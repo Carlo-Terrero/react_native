@@ -1,15 +1,56 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Button } from 'react-native';
 
-export default function App() {
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import Home from './src/home';
+import Detail from './src/detail';
+import Info from './src/info';
+
+const Stack = createNativeStackNavigator();
+
+export default function App({navigation}) {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+
+      <Stack.Navigator 
+        initialRouteName='Home'
+        //De esta manera todos los stack.screen tiene el mismo estilo
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      >
+        <Stack.Screen 
+          name='Home' 
+          component={Home} 
+          options={{ 
+            title: 'HOTEL MIRANDA',
+            headerRight: () => (
+              <Button
+                onPress={() => alert('This is a button!')}
+                //onPress={() => navigation.navigate('Detail')}
+                title="Detail"
+                color="#00cc00"
+              />
+            ),
+               
+          }}
+        />
+
+        <Stack.Screen name='Detail' component={Detail} options={{ title: 'HOTEL MIRANDA' }}/>
+        <Stack.Screen name='Info' component={Info} options={{ title: 'HOTEL MIRANDA' }}/>
+      </Stack.Navigator>
+
+    </NavigationContainer>
   );
 }
-
+/* 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -17,4 +58,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+}); */
