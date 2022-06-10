@@ -16,7 +16,7 @@ export default function App({navigation}) {
       <Stack.Navigator 
         initialRouteName='Home'
         //De esta manera todos los stack.screen tiene el mismo estilo
-        screenOptions={{
+        /* screenOptions={{
           headerStyle: {
             backgroundColor: '#f4511e',
           },
@@ -24,28 +24,13 @@ export default function App({navigation}) {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-        }}
+        }} */
       >
-        <Stack.Screen 
-          name='Home' 
-          component={Home} 
-          options={{ 
-            title: 'HOTEL MIRANDA',
-            headerRight: () => (
-              <Button
-                onPress={() => alert('This is a button!')}
-                //onPress={() => navigation.navigate('Detail')}
-                title="Detail"
-                color="#00cc00"
-              />
-            ),
-               
-          }}
-        />
 
+        <Stack.Screen name='Home' component={Home} options={{ title: 'HOTEL MIRANDA' }}/>
         <Stack.Screen name='Detail' component={Detail} options={{ title: 'HOTEL MIRANDA' }}/>
         <Stack.Screen name='Info' component={Info} options={{ title: 'HOTEL MIRANDA' }}/>
-      </Stack.Navigator>
+      </Stack.Navigator>     
 
     </NavigationContainer>
   );
